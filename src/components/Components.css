@@ -2,8 +2,8 @@
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
-  height: 650px;
-  width: 78vw;
+  height: 550px;
+  width: 85vw;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -30,7 +30,7 @@
     border: 2px solid #ffffff8c;
     background-color:grey;
     display: flex;
-    width: 35vw;
+    width: 38vw;
     height: 300px;
     flex-direction: column;
     padding: 10px;

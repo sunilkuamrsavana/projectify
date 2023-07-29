@@ -3,8 +3,6 @@
     display: flex;
     transition: all 0.25s;
     -webkit-transition: all 0.25s;
-    height: 100vh;
-    overflow: hidden;
 }
 .sidebar{
     width: 300px;
