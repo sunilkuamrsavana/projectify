@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { DragAndDrop} from "./components/DragAndDrop"
+import Login from "./screens/login"
+import "./App.css"
+import SingUp from "./screens/signup"
+import { useState } from "react"
+import HomePage from "./screens/HomePage/HomePage"
 
-function App() {
+const App = () => {
+  const enum ScreenType {
+    Login="Login",
+    SignUp="SignUp",
+    Home="Home"
+  }
+  const [currentScreen, setCurrentScreen] = useState(ScreenType.Home)
+  const getScreen = () => {
+		switch (currentScreen) {
+      case (ScreenType.Login):
+        return <Login OnLogin={()=>{setCurrentScreen(ScreenType.Home)}}/>
+      case (ScreenType.SignUp):
+        return <SingUp/>
+      case(ScreenType.Home):
+        return <HomePage/>
+    }}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-main flex">
+      {getScreen()}
     </div>
-  );
+  )
 }
-
-export default App;
+export default App
