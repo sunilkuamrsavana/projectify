@@ -1,11 +1,12 @@
 .HomePage{
     background-color: black;
     display: flex;
+    height: 100vh;
     transition: all 0.25s;
     -webkit-transition: all 0.25s;
 }
 .sidebar{
-    width: 300px;
+    width: 20vw;
     background-color: grey;
     transition: all 0.25s;
     -webkit-transition: all 0.25s;

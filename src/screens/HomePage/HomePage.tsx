@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./HomePage.css";
-import { DragAndDrop } from "../../components/DragAndDrop";
+import  DragAndDrop from "../../components/DragAndDrop";
 export default function HomePage() {
   const [sidebar, SetSidebar] = useState(true);
   return (

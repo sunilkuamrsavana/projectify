@@ -1,48 +1,110 @@
-import { ContainerCards } from "./ContainerCards"
-import { data } from "../assets"
-import { Data, Status } from "../interfaces"
-import { useState } from "react"
-import "./Components.css"
+import React from "react";
+import { v4 as uuidv4 } from "uuid";
+import"./DragAndDrop.css"
+type TodoType = {
+  id: string;
+  title: string;
+  column: ColumnType;
+};
 
-const typesHero: Status[] = ['good', 'normal',"any","bad"]
+const columns = {
+  incomplete: "Incomplete",
+  progress: "In progress",
+  completed: "Completed ",
+  onhold: "Cancelled",
+  another: "Just another column",
+};
 
-export const DragAndDrop = () => {
+type Column = typeof columns;
+type ColumnType = keyof Column;
 
-  const [isDragging, setIsDragging] = useState(false)
-  const [listItems, setListItems] = useState<Data[]>(data)
+const sampleTodos: TodoType[] = [
+  {
+    id: uuidv4(),
+    title: "Todo item 1",
+    column: "incomplete",
+  },
+  {
+    id: uuidv4(),
+    title: "Todo item 2",
+    column: "incomplete",
+  },
+  {
+    id: uuidv4(),
+    title: "Todo item 3",
+    column: "incomplete",
+  },
+];
 
-  const handleDragging = (dragging: boolean) => setIsDragging(dragging)
+function DragAndDrop() {
+  const [todoTitle, setTodoTitle] = React.useState("");
+  const [todos, setTodos] = React.useState<TodoType[]>(sampleTodos);
 
-  const handleUpdateList = (id: number, status: Status) => {
+  const columnMap = Object.keys(columns) as Array<ColumnType>;
 
-       let card = listItems.find(item => item.id === id)
+  const draggedTodoItem = React.useRef<any>(null);
 
-       if (card && card.status !== status) {
+  const handleAddTodo = () => {
+    const todoPayload: TodoType = {
+      id: uuidv4(),
+      title: todoTitle,
+      column: "incomplete",
+    };
+    setTodos([...todos, todoPayload]);
+  };
 
-           card.status = status
+  const handleColumnDrop = (column: ColumnType) => {
+    const index = todos.findIndex(
+      (todo) => todo.id === draggedTodoItem.current
+    );
+    const tempTodos = [...todos];
+    tempTodos[index].column = column;
+    setTodos(tempTodos);
+  };
+  return (
+    <div className="container-sort">
+      <div className="input-group">
+        <input
+          type="text"
+          name="fruitName"
+          value={todoTitle}
+          placeholder="e.g make a video"
+          onChange={(e) => setTodoTitle(e.target.value)}
+        />
+        <button className="btn" onClick={handleAddTodo}>
+          Add a todo item
+        </button>
+      </div>
 
-           setListItems( prev => ([
-                card!,
-                ...prev.filter(item => item.id !== id)
-            ]))
-       }
-   }
-
-    return (
-        <div className="grid">
-            {
-                typesHero.map(container => (
-                    <ContainerCards
-                        items={listItems}
-                        status={container}
-                        key={container}
-
-                        isDragging={isDragging}
-                        handleDragging={handleDragging}
-                        handleUpdateList={handleUpdateList}
-                    />
-                ))
-            }
-        </div>
-    )
+      <div className="container-sort__wrapper">
+        {columnMap.map((column) => (
+          <div className="container-sort__column">
+            <h5>{columns[column]}</h5>
+            <div
+              className="container-sort__items"
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => handleColumnDrop(column)}
+            >
+              {todos
+                .filter((todo) => todo.column === column)
+                .map((todo) => (
+                  <div
+                    key={todo.id}
+                    className="list-item"
+                    draggable
+                    onDragStart={(e) => (draggedTodoItem.current = todo.id)}
+                    onDragOver={(e) => e.preventDefault()}
+                  >
+                    <i style={{textDecoration:"none"}}></i>
+                    <h3 className="dragItem">{todo.title}</h3>
+                  </div>
+                ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
+
+export default DragAndDrop;

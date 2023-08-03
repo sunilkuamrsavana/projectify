@@ -1,4 +1,4 @@
-import { DragAndDrop} from "./components/DragAndDrop"
+
 import Login from "./screens/login"
 import "./App.css"
 import SingUp from "./screens/signup"
@@ -22,7 +22,7 @@ const App = () => {
         return <HomePage/>
     }}
   return (
-    <div className="container-main flex">
+    <div className="app">
       {getScreen()}
     </div>
   )
