@@ -1,6 +1,15 @@
 .app{
   width:100vw;
-  height:100vh
+  height:100vh;
+  display: flex;
+}
+.sidebarContainer{
+  display: block;
+  height: 100vh;
+}
+.screenContainer{
+  height: 100vh;
+  width: 100%;
 }
 .login{
   width: 100vw;
@@ -8,7 +17,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
 }
 .loginTitle{
   font-size: 25px;
@@ -18,7 +26,7 @@
 .loginContainer{
   width: 400px;
   height: 400px;
-  background-image: linear-gradient(to right, red , yellow);
+  background-color: grey;
   display: flex;
   align-items: center;
   justify-content: center;

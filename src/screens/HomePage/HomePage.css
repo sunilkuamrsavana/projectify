@@ -1,64 +1,78 @@
-.HomePage{
-    background-color: black;
+.Homescreen{
     display: flex;
+    flex-direction: column;
+    gap: 0px;
     height: 100vh;
-    transition: all 0.25s;
-    -webkit-transition: all 0.25s;
+    background-color: #6e7dc2;
 }
-.sidebar{
-    width: 20vw;
-    background-color: grey;
-    transition: all 0.25s;
-    -webkit-transition: all 0.25s;
+.homeBody {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 20px;
+    padding-left: 20px;
+    padding-top: 20px;
 }
-.Sideheader{
+.Welcome{
+    font-size: 27px;
+    color: white;
+}
+.headerHome {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid white;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+.boards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    height: 500px;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+.containers{
+    width: 600px;
+    height: 400px;
+    background: #343F71;
+    border-radius: 10px;
+}
+.container_header{
+    padding-left: 10px;
+    padding-top: 10px;
+    font-size: 22px;
+    color: white;
+}
+.lists{
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid grey;
+}
+.Title {
+    margin: 0;
+    padding-left: 20px;
     display: flex;
     align-items: center;
-    height: 50px;
-    border-bottom: 1px solid white;
-    gap: 10px;
-}
-.sidebar p{
-    font-weight: bold;
     font-size: 25px;
     color: white;
 }
-.Menuicon{
-    height: 30px;
+.headerHome svg{
     width: 30px;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
     color: white;
 }
-.HomeBody{
-    width: 100%;
-    height: 100%;
-}
-.bodyHeader{
-    height: 30px;
-    border-bottom: 1px solid white;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    gap: 5px;
-}
-.HomeMainBody{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-.HomeMainBodyContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    
-}
-.homeBoxes{
-    display: flex;
-    gap: 20px;
-}
 .boxes{
+    background-color: #343F71;
     height: 70px;
-    width: 150px;
-    background-color: grey;
-    border-radius: 10px;
+    width: 200px;
+    border-radius: 5px;
+}
+.box-container{
+    display: flex;
+    gap: 5px;
 }

@@ -1,54 +1,27 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import"./DragAndDrop.css"
-type TodoType = {
-  id: string;
-  title: string;
-  column: ColumnType;
-};
 
-const columns = {
-  incomplete: "Incomplete",
-  progress: "In progress",
-  completed: "Completed ",
-  onhold: "Cancelled",
-  another: "Just another column",
-};
+interface props{
+  columns?:any
+  items?:any
+}
 
-type Column = typeof columns;
-type ColumnType = keyof Column;
 
-const sampleTodos: TodoType[] = [
-  {
-    id: uuidv4(),
-    title: "Todo item 1",
-    column: "incomplete",
-  },
-  {
-    id: uuidv4(),
-    title: "Todo item 2",
-    column: "incomplete",
-  },
-  {
-    id: uuidv4(),
-    title: "Todo item 3",
-    column: "incomplete",
-  },
-];
-
-function DragAndDrop() {
+function DragAndDrop({columns,items}:props) {
   const [todoTitle, setTodoTitle] = React.useState("");
-  const [todos, setTodos] = React.useState<TodoType[]>(sampleTodos);
-
+  const [todos, setTodos] = React.useState<any[]>(items);
+  type Column = typeof columns;
+  type ColumnType = keyof Column;
   const columnMap = Object.keys(columns) as Array<ColumnType>;
 
   const draggedTodoItem = React.useRef<any>(null);
 
   const handleAddTodo = () => {
-    const todoPayload: TodoType = {
-      id: uuidv4(),
+    const todoPayload = {
+      id:uuidv4(),
       title: todoTitle,
-      column: "incomplete",
+      column: "delayed",
     };
     setTodos([...todos, todoPayload]);
   };
@@ -95,8 +68,7 @@ function DragAndDrop() {
                     onDragStart={(e) => (draggedTodoItem.current = todo.id)}
                     onDragOver={(e) => e.preventDefault()}
                   >
-                    <i style={{textDecoration:"none"}}></i>
-                    <h3 className="dragItem">{todo.title}</h3>
+                    {todo.title}
                   </div>
                 ))}
             </div>

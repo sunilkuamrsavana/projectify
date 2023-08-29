@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { auth } from "../firebase";
 import "../App.css"
 
-
-export default function SingUp() {
+interface props{
+  OnclickLogin?:any
+}
+export default function SingUp({OnclickLogin}:props) {
     const[email,SetEmail]=useState<any>()
     const[password,SetPassword]=useState<any>("")
     const[name,SetName]=useState<any>("")
@@ -19,7 +21,7 @@ export default function SingUp() {
                 displayName: name
               }).then(() => {
                 // Profile updated!
-              
+              OnclickLogin()
                 // ...
               }).catch((error:any) => {
                 // An error occurred
@@ -50,9 +52,14 @@ export default function SingUp() {
                 <p>Password:</p>
                 <input type="text" placeholder="Enter your password...."onChange={(e)=>{SetPassword(e.target.value)}} />
             </div>
-            <button onClick={signUp}>
+            <div style={{display:"flex",flexDirection:"column",gap:"10px",width:"300px",alignItems:"center"}}>
+              <button onClick={signUp}>
                 SignUp
-            </button>
+              </button>
+              <div style={{display:"flex",gap:'5px'}}>
+                <p>Already a user?</p><p style={{color:"white",fontWeight:"bold",cursor:"pointer"}}onClick={OnclickLogin}>Login</p>
+              </div>
+            </div>
         </div>
     </div>
   )

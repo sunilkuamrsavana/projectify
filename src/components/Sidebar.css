@@ -1,0 +1,45 @@
+.sidebar{
+    width: 250px;
+    height: 100vh;
+    box-sizing: border-box;
+    z-index: 1;
+    background: #343F71;
+    color: white;
+}
+.header {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid white;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    gap: 10px;
+}
+.title {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+}
+.header svg{
+    width: 30px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.sidebar p{
+    height: 40px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.sidebar p:hover{
+    background: white;
+    color: #343F71;
+}
